@@ -1,4 +1,5 @@
 import React , {useState} from 'react'
+import Cards from './Cards';
 const Contact = () => {
 
 const [name, setName] = useState('');
@@ -12,17 +13,21 @@ const [phonebook,setPhonebook] = useState([])
 
 const formSubmit = (e)=>{
     e.preventDefault()
-    const oldPhonebook = [...phonebook]
-    oldPhonebook.push({name,num,email})
-    setPhonebook(oldPhonebook)
+    setPhonebook([...phonebook,{name,num,email}])
     setName('')
     setNum('')
     setEmail('')
+}
+const deletehandler = (idx)=>{
+    const copyphonebook = [...phonebook]
+    copyphonebook.splice(idx,1)
+    setPhonebook(copyphonebook)
 }
 
 
 
   return (
+
         <div className='contact-box'>
                 <div className='addcontact'>
                     <h1>Add Contacts</h1>
@@ -46,24 +51,16 @@ const formSubmit = (e)=>{
 
 
     </div>
-
-        <div className="contacts">
-             <h1>Contact List</h1>
-            {phonebook.map((elem,idx)=>{
-                return <div key={idx} className='contactCards'>
-                        <div className='contactCard'>
-                            <i class="userIcon ri-contacts-line"></i>
-                            <div className='info'>
-                                <h4>{elem.name.toUpperCase()}</h4>
-                                <h4>{elem.num.toUpperCase()}</h4>
-
-                            </div>
-                        </div>
-                        </div>
-            })}
-        </div>
+            <div className='contacts'>
+                {phonebook.map((elem,idx)=>{
+                    return (<Cards elem={elem} idx={idx} deletehandler= {deletehandler}/>
+                    )
+                })}
+                </div>
         </div>
   )
 }
 
 export default Contact
+
+
