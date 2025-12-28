@@ -33,17 +33,15 @@ const deletehandler = (idx)=>{
                     <h1>Add Contacts</h1>
     <form onSubmit={(e)=>{
         formSubmit(e)
-    }}>
-        <label htmlFor="name">Enter Name</label>
-        <input type="text" value={name} required onChange={(e)=>{
+    }}> 
+        
+        <input  placeholder='Enter Name' type="text" value={name} required onChange={(e)=>{
             setName(e.target.value)
         }}></input>
-        <label htmlFor="num">Enter Number</label>
-        <input type="text" value={num} required onChange={(e)=>{
+        <input placeholder='Enter Number' type="text" value={num} required onChange={(e)=>{
             setNum(e.target.value)
         }} ></input>
-         <label htmlFor="email">Enter Email</label>
-        <input type="email" value={email} required onChange={(e)=>{
+        <input placeholder='Enter Email' type="email" value={email} required onChange={(e)=>{
             setEmail(e.target.value)
         }}></input>
         <button>Submit</button>
