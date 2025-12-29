@@ -6,14 +6,21 @@ const [name, setName] = useState('');
 const [num, setNum] = useState('');
 const [email, setEmail] = useState('');
 
+const localUser = JSON.parse(localStorage.getItem('allUsers')) || []
 
-const [phonebook,setPhonebook] = useState([])
+
+const [phonebook,setPhonebook] = useState(localUser)
 
 
 
 const formSubmit = (e)=>{
     e.preventDefault()
-    setPhonebook([...phonebook,{name,num,email}])
+    const oldPhoneBook= [...phonebook]
+    oldPhoneBook.push({name,num,email})
+
+
+    setPhonebook(oldPhoneBook)
+    localStorage.setItem('allUsers', JSON.stringify(oldPhoneBook))
     setName('')
     setNum('')
     setEmail('')
@@ -22,6 +29,8 @@ const deletehandler = (idx)=>{
     const copyphonebook = [...phonebook]
     copyphonebook.splice(idx,1)
     setPhonebook(copyphonebook)
+    localStorage.setItem('allUsers', JSON.stringify(copyphonebook))
+    
 }
 
 
