@@ -4,7 +4,7 @@ import Contact from './components/Contact'
 const App = () => {
   return (
     <div>
-      <Contact/>
+      <Contact />
     </div>
   )
 }
